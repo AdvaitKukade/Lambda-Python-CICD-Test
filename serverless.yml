@@ -1,0 +1,14 @@
+service: python-lambda-numpy-test
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: test
+  region: us-east-2
+
+functions:
+  hello:
+    handler: handler.main
+
+plugins:
+  - serverless-python-requirements
