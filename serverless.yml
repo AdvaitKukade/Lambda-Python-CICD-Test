@@ -1,14 +1,76 @@
 service: python-lambda-numpy-test
 
+resources:
+ Resources:
+   TestQueue:
+     Type: AWS::SQS::Queue
+     Properties:
+       ContentBasedDeduplication: true
+       DelaySeconds: 0
+       FifoQueue: true
+       QueueName: TrialSQSQueue.fifo
+       ReceiveMessageWaitTimeSeconds: 0
+       VisibilityTimeout: 360
+
+  #  ScheduledRule:
+  #    Type: AWS::Events::Rule
+  #    Properties:
+  #      Description: "Scheduled Test Rule"
+  #      ScheduleExpression: "cron(00 10 * * ? *)"
+  #      State: "ENABLED"
+  #      Targets: 
+  #        - 
+  #          Arn:
+  #            Fn::GetAtt:
+  #              - "hello"
+  #              - "Arn"
+  #          Id: "LambdFunction_hello" 
+
+  #  PermissionForEventsToInvokeLambda:
+  #    Type: AWS::Lambda::Permission
+  #    Properties:
+  #      FunctionName: !Ref hello
+  #      Action: "lambda:InvokeFunction"
+  #      Principal: "events.amazonaws.com"
+  #      SourceArn:
+  #        Fn::GetAtt:
+  #          - "ScheduledRule"
+  #          - "Arn"
+
 provider:
   name: aws
   runtime: python3.7
   stage: test
   region: us-east-2
-
+  s3:
+    bucketQuattr:
+      name: test-bucket-lambda-py
+   
 functions:
   hello:
     handler: handler.main
-
+    events:
+      - s3:
+         bucket: bucketQuattr
+         event: s3:ObjectCreated:*
+         rules:
+           - prefix: oxylab_response/
+           - suffix: .json
+        
+      - sqs:
+         arn:
+           Fn::GetAtt:
+               - TestQueue
+               - Arn    
+         batchSize: 1
+     
+      - schedule: 
+         name: TestLambdaCronJob
+         description: For Testing Cron Job for Lambda
+         rate: cron(20 11 * * ? *)
+      
+      # - eventBridge:
+      #     schedule: cron(10 11 * * ? *)
+                       
 plugins:
   - serverless-python-requirements
