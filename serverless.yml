@@ -45,7 +45,13 @@ provider:
   s3:
     bucketQuattr:
       name: test-bucket-lambda-py
-   
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 
+        - s3:PutObject
+        - s3:GetObject
+      Resource: arn:aws:s3:::python-lambda-numpy-test-serverlessdeploymentbuck-1krrzh5e8um2a
+         
 functions:
   hello:
     handler: handler.main
