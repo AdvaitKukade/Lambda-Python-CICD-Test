@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install: #Makes sure that np
      commands:
-       - sudo apt-get -y install python3-pip python-dev 
+       - apt-get -y install python3-pip python-dev 
        - npm install --silent --no-progress -g npm
        - npm install --silent --no-progress -g serverless 
   pre_build:
