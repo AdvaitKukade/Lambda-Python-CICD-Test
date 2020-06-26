@@ -1,16 +1,10 @@
 # handler.py
-import numpy as np
+import requests
 
-def main(event, context):
+def starter(event, context):
 
-    a = np.arange(15).reshape(3, 5)
-    print("Your numpy array:")
-    print(a)
+    print("event:", event, "context:", context)
 
-if __name__ == "__main__":
+    r = requests.get("http://www.google.com")
 
-    main('', '')
-
-    print("Added a line")
-    print("Some New Data Here")
-    print("Wassup, how are you")
+    print(r.status_code)
