@@ -15,10 +15,9 @@ phases:
       - pwd
       - ls
       - mkdir python-project
-      - cd python-project
       - ls
       - pip install --upgrade pip
-      - pip install -r requirements.txt
+      - pip install -r requirements.txt --target=./
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
