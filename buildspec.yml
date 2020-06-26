@@ -13,6 +13,7 @@ phases:
     commands:
       #- pip install numpy
       - pwd
+      - pip install --upgrade pip
       - pip install -r requirements.txt
     finally:
       - echo "Done with pre_build phase"
