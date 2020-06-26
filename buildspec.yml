@@ -14,7 +14,7 @@ phases:
     commands:
       - pwd
       - ls
-      - pip install -r requirements.txt --target=./
+      - pip install -r requirements.txt -t .
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
@@ -22,7 +22,6 @@ phases:
       - sh deploy.sh
     finally:
       - echo "Done with post_build phase"
-
       
   #- pip install numpy
       # - mkdir python-project
