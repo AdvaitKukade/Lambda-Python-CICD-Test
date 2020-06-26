@@ -1,7 +1,7 @@
 # handler.py
 import requests
 
-def starter(event, context):
+def main(event, context):
 
     print("event:", event, "context:", context)
 
