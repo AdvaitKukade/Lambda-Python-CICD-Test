@@ -15,4 +15,5 @@ def main(event, context):
     print("You did it")
 
     x = datetime.datetime.now()
-    print("Current Date Time - " + x)
+    print("Current Date Time - ")
+    print(x)
