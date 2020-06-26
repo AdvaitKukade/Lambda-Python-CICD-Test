@@ -7,7 +7,10 @@ phases:
       - apt-get -y install python3-pip python-dev 
       - npm install --silent --no-progress -g npm
       - npm install --silent --no-progress -g serverless
+<<<<<<< HEAD
       - npm install --save --silent --no-progress serverless-python-requirements
+=======
+>>>>>>> c85379f0a7be3953b63efed2bf2d568ef016608e
     finally:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
@@ -33,6 +36,9 @@ phases:
       # - pip install numpy --target=./
       # - pipenv install -r requirements.txt
       # - pipenv install numpy      
+<<<<<<< HEAD
       # - python3 -m pip install --user virtualenv
       # - virtualenv -p python3 a
       # - . a/bin/activate
+=======
+>>>>>>> c85379f0a7be3953b63efed2bf2d568ef016608e
