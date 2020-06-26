@@ -79,5 +79,5 @@ functions:
       # - eventBridge:
       #     schedule: cron(10 11 * * ? *)
                        
-# plugins:
-#   - serverless-python-requirements
+plugins:
+  - serverless-python-requirements
