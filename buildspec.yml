@@ -7,8 +7,7 @@ phases:
       - apt-get -y install python3-pip python-dev 
       - pip install --user pipenv
       - npm install --silent --no-progress -g npm
-      - npm install --silent --no-progress -g serverless 
-      - npm install --save serverless-python-requirements
+      - npm install --silent --no-progress -g serverless
     finally:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
@@ -23,6 +22,7 @@ phases:
       # - pipenv install numpy
       - pwd
       - ls
+      - npm install serverless-python-requirements
       - pip install -r requirements.txt --target=./
     finally:
       - echo "Done with pre_build phase"
