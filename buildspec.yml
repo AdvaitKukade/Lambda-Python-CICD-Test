@@ -5,10 +5,8 @@ phases:
     commands:
       - apt-get update
       - apt-get -y install python3-pip python-dev 
-      - pip install --user pipenv
       - npm install --silent --no-progress -g npm
       - npm install --silent --no-progress -g serverless
-      - sls plugin install -n serverless-python-requirements
     finally:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
