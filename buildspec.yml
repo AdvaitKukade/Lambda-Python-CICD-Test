@@ -8,6 +8,7 @@ phases:
       - pip install --user pipenv
       - npm install --silent --no-progress -g npm
       - npm install --silent --no-progress -g serverless
+      - sls plugin install -n serverless-python-requirements
     finally:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
@@ -17,13 +18,11 @@ phases:
       - python3 -m pip install --user virtualenv
       - virtualenv -p python3 a
       - . a/bin/activate
-      - npm install serverless-python-requirements
       - pip install -r requirements.txt
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
     commands:
-      - echo $SHELL
       - sh deploy.sh
     finally:
       - echo "Done with post_build phase"
