@@ -1,16 +1,16 @@
-service: python-lambda-numpy-test
+service: python-lambda-test
 
-resources:
- Resources:
-   TestQueue:
-     Type: AWS::SQS::Queue
-     Properties:
-       ContentBasedDeduplication: true
-       DelaySeconds: 0
-       FifoQueue: true
-       QueueName: TrialSQSQueue.fifo
-       ReceiveMessageWaitTimeSeconds: 0
-       VisibilityTimeout: 360
+# resources:
+#  Resources:
+#    TestQueue:
+#      Type: AWS::SQS::Queue
+#      Properties:
+#        ContentBasedDeduplication: true
+#        DelaySeconds: 0
+#        FifoQueue: true
+#        QueueName: TrialSQSQueue.fifo
+#        ReceiveMessageWaitTimeSeconds: 0
+#        VisibilityTimeout: 360
 
   #  ScheduledRule:
   #    Type: AWS::Events::Rule
@@ -45,13 +45,13 @@ provider:
   s3:
     bucketQuattr:
       name: test-bucket-lambda-py
-  iamRoleStatements:
-    - Effect: Allow
-      Action: 
-        - s3:PutObject
-        - s3:GetObject
-        - s3:ListBucket
-      Resource: arn:aws:s3:::python-lambda-numpy-test-serverlessdeploymentbuck-1krrzh5e8um2a/*
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action: 
+  #       - s3:PutObject
+  #       - s3:GetObject
+  #       - s3:ListBucket
+  #     Resource: arn:aws:s3:::python-lambda-numpy-test-serverlessdeploymentbuck-1krrzh5e8um2a/*
 
 functions:
   hello:
@@ -64,17 +64,17 @@ functions:
            - prefix: oxylab_response/
            - suffix: .json
         
-      - sqs:
-         arn:
-           Fn::GetAtt:
-               - TestQueue
-               - Arn    
-         batchSize: 1
+      # - sqs:
+      #    arn:
+      #      Fn::GetAtt:
+      #          - TestQueue
+      #          - Arn    
+      #    batchSize: 1
      
-      - schedule: 
-         name: TestLambdaCronJob
-         description: For Testing Cron Job for Lambda
-         rate: cron(20 11 * * ? *)
+      # - schedule: 
+      #    name: TestLambdaCronJob
+      #    description: For Testing Cron Job for Lambda
+      #    rate: cron(20 11 * * ? *)
       
       # - eventBridge:
       #     schedule: cron(10 11 * * ? *)

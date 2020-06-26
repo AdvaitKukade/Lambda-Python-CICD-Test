@@ -11,7 +11,9 @@ phases:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
     commands:
-      - pip install numpy
+      #- pip install numpy
+      - pwd
+      - pip install -r requirements.txt
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
