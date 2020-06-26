@@ -82,7 +82,3 @@ functions:
 custom:
   pythonRequirements:
     layer: true
-
-
-plugins:
-  - serverless-python-requirements
