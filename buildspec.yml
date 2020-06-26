@@ -7,15 +7,14 @@ phases:
       - apt-get -y install python3-pip python-dev 
       - npm install --silent --no-progress -g npm
       - npm install --silent --no-progress -g serverless
-      - npm install --save serverless-python-requirements
+      # - npm install --save serverless-python-requirements
     finally:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
     commands:
       - pwd
       - ls
-      # - pip freeze > requirements.txt
-      - pip install -r requirements.txt
+      - pip install -r requirements.txt --target=./
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
