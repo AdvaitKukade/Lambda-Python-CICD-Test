@@ -18,7 +18,7 @@ phases:
       - virtualenv -p python3 a
       - . a/bin/activate
       - npm install serverless-python-requirements
-      - pip install -r requirements.txt --target=./
+      - pip install -r requirements.txt
     finally:
       - echo "Done with pre_build phase"
   post_build: #For Deployment
