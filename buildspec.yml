@@ -12,16 +12,11 @@ phases:
       - echo "Done with install phase"   
   pre_build: #Makes sure that app specific dependencies are installed from requirements
     commands:
-      #- pip install numpy
-      # - mkdir python-project
-      # - ls
-      # - pip install --upgrade pip / --target=./
-      # - pip install -r requirements.txt \
-      # - pip install numpy --target=./
-      # - pipenv install -r requirements.txt
-      # - pipenv install numpy
       - pwd
       - ls
+      - python3 -m pip install --user virtualenv
+      - virtualenv -p python3 a
+      - . a/bin/activate
       - npm install serverless-python-requirements
       - pip install -r requirements.txt --target=./
     finally:
@@ -32,3 +27,13 @@ phases:
       - sh deploy.sh
     finally:
       - echo "Done with post_build phase"
+
+      
+#- pip install numpy
+      # - mkdir python-project
+      # - ls
+      # - pip install --upgrade pip / --target=./
+      # - pip install -r requirements.txt \
+      # - pip install numpy --target=./
+      # - pipenv install -r requirements.txt
+      # - pipenv install numpy      
