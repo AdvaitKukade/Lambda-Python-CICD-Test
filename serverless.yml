@@ -63,7 +63,8 @@ functions:
          rules:
            - prefix: oxylab_response/
            - suffix: .json
-        
+    layers:       
+      - {Ref: PythonRequirementsLambdaLayer}
       # - sqs:
       #    arn:
       #      Fn::GetAtt:
@@ -78,6 +79,10 @@ functions:
       
       # - eventBridge:
       #     schedule: cron(10 11 * * ? *)
-                       
+custom:
+  pythonRequirements:
+    layer: true
+
+
 plugins:
   - serverless-python-requirements
