@@ -5,6 +5,7 @@ phases:
     commands:
       - apt-get update
       - apt-get -y install python3-pip python-dev 
+      - pip install --user pipenv
       - npm install --silent --no-progress -g npm
       - npm install --silent --no-progress -g serverless 
     finally:
@@ -12,13 +13,14 @@ phases:
   pre_build: #Makes sure that app specific dependencies are installed from requirements
     commands:
       #- pip install numpy
-      - pwd
-      - ls
       # - mkdir python-project
       # - ls
       # - pip install --upgrade pip / --target=./
       # - pip install -r requirements.txt \
-      - pip install numpy --target=./
+      # - pip install numpy --target=./
+      - pwd
+      - ls
+      - pipenv install -r requirements.txt
 
     finally:
       - echo "Done with pre_build phase"
